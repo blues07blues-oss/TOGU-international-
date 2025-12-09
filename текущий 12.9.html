@@ -1,0 +1,3802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>TOGU International - Foreign Student Portal | Pacific National University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES & RESET ===== */
+        :root {
+            --primary-red: #D1002F;
+            --primary-red-rgb: 209, 0, 47;
+            --primary-dark: #8B0023;
+            --secondary-blue: #0066CC;
+            --secondary-blue-rgb: 0, 102, 204;
+            --secondary-light: #4D94FF;
+            --accent-gold: #FFC107;
+            --accent-teal: #00BFA5;
+            --accent-teal-rgb: 0, 191, 165;
+            
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-tertiary: #F1F3F5;
+            --bg-card: #FFFFFF;
+            --bg-overlay: rgba(0, 0, 0, 0.5);
+            
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-tertiary: #757575;
+            --text-light: #FFFFFF;
+            
+            --border-color: #E0E0E0;
+            --border-light: rgba(255, 255, 255, 0.2);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 12px 60px rgba(0, 0, 0, 0.16);
+            
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Manrope', sans-serif;
+            
+            --max-width: 100%;
+            --border-radius: 12px;
+            --border-radius-sm: 6px;
+            --border-radius-lg: 20px;
+            --border-radius-xl: 28px;
+            
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --header-height: 80px;
+            --section-padding-top: 100px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1E1E1E;
+            --bg-card: #1E1E1E;
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+            
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --text-tertiary: #B0B0B0;
+            
+            --border-color: #2D2D2D;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 12px 60px rgba(0, 0, 0, 0.5);
+            
+            --primary-red: #FF3366;
+            --primary-dark: #CC0044;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+
+        /* ===== АНИМАЦИИ ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== ТИПОГРАФИЯ ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .text-large {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-tertiary);
+        }
+
+        .hero-title {
+            color: white !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="dark"] .hero-title {
+            color: white !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ===== ЛЕЙАУТ ===== */
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0;
+            padding: 0;
+        }
+
+        .section {
+            padding: var(--section-padding-top) 0 120px 0;
+            position: relative;
+            background-color: var(--bg-primary);
+            transition: background-color var(--transition-normal);
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-alt {
+            background-color: var(--bg-secondary);
+        }
+
+        .section-dark {
+            background: linear-gradient(135deg, var(--primary-dark), #0A0A0A);
+            color: var(--text-light);
+        }
+
+        .section-dark h2, 
+        .section-dark h3, 
+        .section-dark p {
+            color: var(--text-light);
+        }
+
+        /* ===== ИСПРАВЛЕНИЯ ДЛЯ ТЕМНЫХ СЕКЦИЙ ===== */
+        .section-dark .card-content,
+        .section-dark .card-content h3,
+        .section-dark .card-content p,
+        .section-dark .card-content .list-modern li {
+            color: var(--text-primary) !important;
+        }
+
+        .section-dark .list-modern li::before {
+            color: var(--accent-teal) !important;
+        }
+
+        .section-dark .card .social-link {
+            color: var(--text-primary) !important;
+        }
+
+        [data-theme="dark"] .section-dark .card-content,
+        [data-theme="dark"] .section-dark .card-content h3,
+        [data-theme="dark"] .section-dark .card-content p,
+        [data-theme="dark"] .section-dark .card-content .list-modern li {
+            color: var(--text-primary) !important;
+        }
+
+        /* ===== ШАПКА ===== */
+        header {
+            background: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--header-height);
+            transition: all var(--transition-normal);
+            padding: 0;
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(var(--bg-primary-rgb, 10, 10, 10), 0.95);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+            background: var(--bg-primary);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: var(--header-height);
+            padding: 0 20px;
+            position: relative;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            transition: transform var(--transition-normal);
+            max-width: 300px;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .logo-title {
+            font-family: var(--font-secondary);
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ===== НАВИГАЦИЯ ===== */
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-fast);
+            position: relative;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            box-sizing: border-box;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-red);
+            background: rgba(var(--primary-red-rgb), 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--primary-red);
+            background: rgba(var(--primary-red-rgb), 0.1);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: var(--primary-red);
+            border-radius: 3px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-left: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .lang-btn {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            border-radius: 20px;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+            min-width: 44px;
+            text-align: center;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-red);
+            border-color: var(--primary-red);
+            color: white;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            transform: rotate(15deg);
+        }
+
+        /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 1001;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-btn:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ===== ГЛАВНЫЙ БАННЕР ===== */
+        .hero {
+            padding-top: calc(var(--header-height) + 40px);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, 
+                rgba(170, 0, 35, 0.95) 0%,
+                rgba(140, 0, 25, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-bottom: 0;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, 
+                rgba(100, 0, 30, 0.95) 0%, 
+                rgba(70, 0, 20, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: slideUp 0.8s ease-out;
+            padding: 2rem 20px;
+            max-width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .mb-5 {
+            margin-bottom: 2rem !important;
+        }
+
+        .quick-start {
+            margin-top: 2rem;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1.8rem;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-normal);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-red);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ===== СЕТКА КАРТОЧЕК ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            border: 1px solid var(--border-color);
+            animation: slideUp 0.6s ease-out forwards;
+            opacity: 0;
+            margin: 0;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 380px;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-gold));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-tertiary);
+        }
+
+        /* ===== СТАТИСТИКА ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            word-break: break-word;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-red);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+            display: block;
+            line-height: 1;
+            word-break: break-word;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            word-break: break-word;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== ТАБЛИЦЫ ===== */
+        .table-wrapper {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: 1.5rem 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            background: rgba(var(--primary-red-rgb), 0.05);
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: left;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(var(--primary-red-rgb), 0.02);
+        }
+
+        /* ===== СПИСКИ ===== */
+        .list-modern {
+            list-style: none;
+            margin: 1.5rem 0;
+            flex: 1;
+        }
+
+        .list-modern li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            transition: all var(--transition-fast);
+            font-size: 0.95rem;
+        }
+
+        .list-modern li:last-child {
+            border-bottom: none;
+        }
+
+        .list-modern li:hover {
+            color: var(--primary-red);
+            transform: translateX(8px);
+        }
+
+        .list-modern li::before {
+            content: '✓';
+            color: var(--accent-teal);
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        /* ===== АККОРДЕОН ===== */
+        .accordion {
+            max-width: 800px;
+            margin: 1.5rem auto;
+            padding: 0 20px;
+        }
+
+        .accordion-item {
+            margin-bottom: 0.75rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+
+        .accordion-header {
+            padding: 1.2rem 1.5rem;
+            background: var(--bg-card);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all var(--transition-fast);
+        }
+
+        .accordion-header:hover {
+            background: rgba(var(--primary-red-rgb), 0.05);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: rgba(var(--primary-red-rgb), 0.05);
+        }
+
+        /* ===== ФУТЕР ===== */
+        footer {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 3rem 20px 1.5rem;
+            position: relative;
+            margin: 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-red);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            min-height: 24px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            border: 1px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-3px);
+            border-color: var(--primary-red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+        }
+
+        /* ===== КНОПКА НАВЕРХ ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-normal);
+            z-index: 999;
+            box-shadow: var(--shadow-lg);
+            border: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* ===== ЗАГРУЗЧИК ===== */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-red);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+
+        .loader-text {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ===== ПРОГРЕСС БАР ===== */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-gold));
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ===== */
+        .quick-start {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all var(--transition-normal);
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        [data-theme="dark"] .feature-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: white;
+        }
+
+        [data-theme="dark"] .feature-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            margin: 0 auto 1.2rem;
+        }
+
+        .feature-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            min-height: 2.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 2.5rem auto;
+            padding: 0 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(var(--primary-red-rgb), 0.1);
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 1100px) {
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all var(--transition-normal);
+                z-index: 999;
+                max-height: calc(100vh - var(--header-height));
+                overflow-y: auto;
+                margin: 0;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 1rem;
+                font-size: 1rem;
+                min-height: 50px;
+            }
+
+            .header-controls {
+                width: 100%;
+                justify-content: center;
+                margin: 1rem 0 0 0;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border-color);
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .language-switcher {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .theme-toggle {
+                order: 2;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .logo-title {
+                font-size: 1rem;
+            }
+            
+            .logo-subtitle {
+                font-size: 0.7rem;
+            }
+            
+            .section {
+                padding-top: calc(var(--header-height) + 15px);
+                padding-bottom: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding-top: calc(var(--header-height) + 15px);
+                padding-bottom: 70px;
+                min-height: auto;
+            }
+
+            .hero {
+                background-attachment: scroll;
+                padding-top: calc(var(--header-height) + 20px);
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 6vw, 2.8rem);
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                margin: 2rem 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin: 2rem 15px;
+            }
+
+            .card {
+                min-height: 350px;
+            }
+            
+            .card-content {
+                padding: 1.5rem;
+                min-height: 350px;
+            }
+            
+            .feature-card {
+                min-height: 300px;
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .scroll-top {
+                width: 44px;
+                height: 44px;
+                bottom: 1.2rem;
+                right: 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1rem;
+            }
+            
+            .header-container {
+                padding: 0 15px;
+            }
+            
+            .hero-content {
+                padding: 1rem 15px;
+            }
+            
+            .table-wrapper {
+                margin: 1.5rem 15px;
+            }
+            
+            .quick-start {
+                padding: 0 15px;
+                margin-top: 1.5rem;
+            }
+            
+            .section-header {
+                padding: 0 15px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .accordion {
+                padding: 0 15px;
+            }
+            
+            .search-box {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 10px;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 0.75rem;
+            }
+            
+            .ml-2 {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                margin: 2rem 10px;
+            }
+
+            .card {
+                min-height: 320px;
+            }
+            
+            .card-content {
+                padding: 1.2rem;
+                min-height: 320px;
+            }
+            
+            .feature-card {
+                min-height: 280px;
+                padding: 1.2rem;
+            }
+
+            table {
+                min-width: 300px;
+            }
+
+            th, td {
+                padding: 0.8rem;
+            }
+            
+            .logo {
+                gap: 0.75rem;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .logo-title {
+                font-size: 0.95rem;
+            }
+            
+            .logo-subtitle {
+                font-size: 0.65rem;
+            }
+            
+            .header-controls {
+                gap: 0.4rem;
+            }
+            
+            .lang-btn {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.75rem;
+                min-width: 40px;
+            }
+            
+            .theme-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .feature-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content {
+                padding: 0.75rem 10px;
+            }
+            
+            .cards-grid {
+                margin: 1.5rem 10px;
+            }
+            
+            .table-wrapper {
+                margin: 1.5rem 10px;
+            }
+            
+            .quick-start {
+                padding: 0 10px;
+                margin-top: 1rem;
+            }
+            
+            .section-header {
+                padding: 0 10px;
+                margin-bottom: 1.2rem;
+            }
+            
+            .accordion {
+                padding: 0 10px;
+            }
+            
+            .search-box {
+                padding: 0 10px;
+            }
+            
+            .section {
+                padding-top: calc(var(--header-height) + 10px);
+                padding-bottom: 60px;
+            }
+        }
+
+        /* ===== УТИЛИТЫ ===== */
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 2rem; }
+        .mb-5 { margin-bottom: 2.5rem; }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mt-4 { margin-top: 2rem; }
+        .mt-5 { margin-top: 2.5rem; }
+        .ml-2 { margin-left: 0.5rem; }
+        .hidden { 
+            display: none !important; 
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        .visible { display: block; }
+
+        /* ===== УВЕДОМЛЕНИЯ ===== */
+        .notification {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease-out;
+            max-width: 350px;
+            font-size: 0.9rem;
+        }
+
+        .notification-warning {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        .notification-info {
+            background: var(--secondary-blue);
+            color: white;
+        }
+
+        .notification button {
+            background: transparent;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .notification {
+                top: 80px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Loading indicator -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text" data-key="loading_text">Loading TOGU International...</div>
+    </div>
+
+    <!-- Reading progress bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Site header -->
+    <header id="mainHeader">
+        <div class="container header-container">
+            <a href="#" class="logo" onclick="switchPage('home')">
+                <div class="logo-icon">TOGU</div>
+                <div class="logo-text">
+                    <div class="logo-title" data-key="logo_title">TOGU International</div>
+                    <div class="logo-subtitle" data-key="logo_subtitle">Foreign Student Portal</div>
+                </div>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" onclick="switchPage('home')" data-key="nav_home"><i class="fas fa-home"></i> <span data-key="nav_home">Home</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('about')" data-key="nav_about"><i class="fas fa-university"></i> <span data-key="nav_about">About University</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('admission')" data-key="nav_admission"><i class="fas fa-file-alt"></i> <span data-key="nav_admission">Admission</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('education')" data-key="nav_education"><i class="fas fa-graduation-cap"></i> <span data-key="nav_education">Education</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('sport')" data-key="nav_sport"><i class="fas fa-futbol"></i> <span data-key="nav_sport">Sports</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('life')" data-key="nav_life"><i class="fas fa-city"></i> <span data-key="nav_life">Life in Khabarovsk</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('support')" data-key="nav_support"><i class="fas fa-hands-helping"></i> <span data-key="nav_support">Support</span></a>
+                <a href="#" class="nav-link" onclick="switchPage('contacts')" data-key="nav_contacts"><i class="fas fa-address-book"></i> <span data-key="nav_contacts">Contacts</span></a>
+
+                <div class="header-controls">
+                    <div class="language-switcher">
+                        <button class="lang-btn" data-lang="ru">RU</button>
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="cn">中文</button>
+                    </div>
+
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main id="mainContent">
+        <!-- Home page -->
+        <section id="home-page" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-key="hero_title">Welcome to TOGU!</h1>
+                    <p class="hero-subtitle" data-key="hero_subtitle">Your path to quality education in Russia starts here. We will help you adapt and succeed.</p>
+
+                    <div class="mb-5">
+                        <button class="btn btn-primary" onclick="switchPage('admission')" data-key="hero_apply">
+                            <span data-key="hero_apply">Apply to TOGU</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-outline ml-2" onclick="switchPage('about')" data-key="hero_more">
+                            <span data-key="hero_more">Learn More</span>
+                            <i class="fas fa-book-open"></i>
+                        </button>
+                    </div>
+
+                    <div class="quick-start">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 data-key="card_docs">Document Processing</h3>
+                            <p data-key="card_docs_desc">Step-by-step guide for visa, registration and other legal matters</p>
+                            <button class="btn btn-outline" onclick="switchPage('admission')" data-key="btn_details">Details</button>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3 data-key="card_campus">Student Campus</h3>
+                            <p data-key="card_campus_desc">Dormitories, infrastructure, living rules and useful tips</p>
+                            <button class="btn btn-outline" onclick="switchPage('life')" data-key="btn_explore">Explore</button>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 data-key="card_community">Community</h3>
+                            <p data-key="card_community_desc">Meeting other students, interest clubs and events</p>
+                            <button class="btn btn-outline" onclick="switchPage('support')" data-key="btn_join">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About University -->
+        <section id="about-page" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="about_title">Pacific National University</h2>
+                    <p class="section-subtitle" data-key="about_subtitle">The largest educational and scientific center in the Russian Far East</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">21000+</span>
+                        <span class="stat-label" data-key="stat_students">students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label" data-key="stat_international">international students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">114</span>
+                        <span class="stat-label" data-key="stat_partners">international partners</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">65+</span>
+                        <span class="stat-label" data-key="stat_years">years of history</span>
+                    </div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <h3 data-key="about_history_title">History and Achievements</h3>
+                            <p data-key="about_history_text">Founded in 1958 as Khabarovsk Automobile and Road Institute. Today TOGU is a modern university with rich traditions and innovative approaches to education.</p>
+                            <p data-key="about_ranking">Ranked among top-50 universities in Russia for education quality and research activity.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-timeline"></i>
+                            </div>
+                            <h3 data-key="about_timeline_title">Historical Timeline</h3>
+                            <ul class="list-modern">
+                                <li><strong data-key="year_1958">1958</strong> <span data-key="timeline_1958">- Foundation of Khabarovsk Automobile and Road Institute</span></li>
+                                <li><strong data-key="year_1962">1962</strong> <span data-key="timeline_1962">- Transformation into Khabarovsk Polytechnic Institute</span></li>
+                                <li><strong data-key="year_1992">1992</strong> <span data-key="timeline_1992">- Status of technical university</span></li>
+                                <li><strong data-key="year_2005">2005</strong> <span data-key="timeline_2005">- Receiving current name</span></li>
+                                <li><strong data-key="year_2023">2023</strong> <span data-key="timeline_2023">- Ranked among top-50 Russian universities</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 data-key="about_mission_title">Mission and Values</h3>
+                            <p data-key="about_mission_text">Training highly qualified specialists capable of solving complex tasks in global economy conditions. Development of scientific potential in the Far Eastern region.</p>
+                            <div class="mt-4">
+                                <span class="text-small"><i class="fas fa-award"></i> <span data-key="accreditation">State accreditation</span></span><br>
+                                <span class="text-small"><i class="fas fa-globe"></i> <span data-key="recognition">International recognition</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admission -->
+        <section id="admission-page" class="section hidden section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="admission_title">Admission for Foreign Citizens</h2>
+                    <p class="section-subtitle" data-key="admission_subtitle">Everything you need to know for successful admission to TOGU</p>
+                </div>
+
+                <h3 class="mb-3" style="padding: 0 20px;" data-key="admission_deadlines">Application Deadlines 2025</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-key="table_category">Category</th>
+                                <th data-key="table_type">Type of Admission</th>
+                                <th data-key="table_period">Application Period</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-key="category_cis">CIS Citizens</td>
+                                <td data-key="type_budget_contract">Budget/Contract</td>
+                                <td data-key="period_june_aug">June - August 2025</td>
+                            </tr>
+                            <tr>
+                                <td data-key="category_quota">Foreign citizens by quota</td>
+                                <td data-key="type_budget">Budget (250 places)</td>
+                                <td data-key="period_oct_jan">October 2024 - January 2025</td>
+                            </tr>
+                            <tr>
+                                <td data-key="category_other">Other foreign citizens</td>
+                                <td data-key="type_contract">Contract</td>
+                                <td data-key="period_june_aug2">June - August 2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cards-grid mt-5">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h3 data-key="docs_title">Required Documents</h3>
+                            <ul class="list-modern">
+                                <li data-key="doc_application">Application form</li>
+                                <li data-key="doc_education">Education certificate with notarized translation</li>
+                                <li data-key="doc_passport">Passport copy with translation</li>
+                                <li data-key="doc_medical">Medical certificate 086/u</li>
+                                <li data-key="doc_hiv">HIV-free certificate</li>
+                                <li data-key="doc_photos">6 photos 3x4 cm</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-ruble-sign"></i>
+                            </div>
+                            <h3 data-key="tuition_title">Tuition Fees</h3>
+                            <p><strong data-key="bachelor">Bachelor's:</strong> <span data-key="bachelor_price">from 165,000 rubles/year</span></p>
+                            <p><strong data-key="master">Master's:</strong> <span data-key="master_price">from 185,000 rubles/year</span></p>
+                            <p><strong data-key="phd">PhD:</strong> <span data-key="phd_price">from 210,000 rubles/year</span></p>
+                            <p><strong data-key="prep">Preparatory department:</strong> <span data-key="prep_price">135,000 rubles/year</span></p>
+                            <div class="mt-3 text-small">
+                                <i class="fas fa-info-circle"></i> <span data-key="prices_year">Prices for 2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 data-key="scholarships_title">Scholarships</h3>
+                            <p><strong data-key="scholarship_state">Russian Government Scholarship:</strong> <span data-key="scholarship_state_desc">full tuition coverage + monthly allowance</span></p>
+                            <p><strong data-key="scholarship_togu">TOGU Scholarship for excellent students:</strong> <span data-key="scholarship_togu_desc">30-50% tuition discount</span></p>
+                            <p><strong data-key="scholarship_apr">Asia-Pacific Region Grants:</strong> <span data-key="scholarship_apr_desc">special programs for students from China, Vietnam, Korea</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education-page" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="education_title">Educational Programs</h2>
+                    <p class="section-subtitle" data-key="education_subtitle">Wide range of programs for international students</p>
+                </div>
+
+                <h3 class="mb-3" style="padding: 0 20px;" data-key="preparatory_title">Preparatory Department</h3>
+                <p class="mb-4" style="padding: 0 20px;" data-key="preparatory_desc">Pre-university training programs for foreign citizens:</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h3 data-key="profile_humanities">Humanities Profile</h3>
+                            <p><strong data-key="duration">Duration:</strong> <span data-key="duration_10">10 months (September-June)</span></p>
+                            <p><strong data-key="intensity">Intensity:</strong> <span data-key="hours_30">30 hours per week</span></p>
+                            <p data-key="profile_humanities_desc">Study of Russian language, history, culture and basics of humanities</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 data-key="profile_engineering">Engineering-Technical</h3>
+                            <p><strong data-key="duration">Duration:</strong> <span data-key="duration_10">10 months (September-June)</span></p>
+                            <p><strong data-key="intensity">Intensity:</strong> <span data-key="hours_30">30 hours per week</span></p>
+                            <p data-key="profile_engineering_desc">Preparation in mathematics, physics, computer science and technical disciplines</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 data-key="profile_economics">Economics Profile</h3>
+                            <p><strong data-key="duration">Duration:</strong> <span data-key="duration_10">10 months (September-June)</span></p>
+                            <p><strong data-key="intensity">Intensity:</strong> <span data-key="hours_30">30 hours per week</span></p>
+                            <p data-key="profile_economics_desc">Study of Russian language, mathematics, economics and social studies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4" style="margin: 0 20px;">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3 data-key="russian_courses">Russian Language Courses</h3>
+                        <p data-key="russian_courses_desc">Various level programs from A1 to B2 for international students</p>
+                        <p><strong data-key="success_rate">Success rate of preparatory department students:</strong> <span data-key="rate_80">80%</span></p>
+                        <p data-key="approach_desc">Individual approach, modern methods, experienced teachers</p>
+                        <div class="mt-4">
+                            <span class="text-small"><i class="fas fa-users"></i> <span data-key="groups">Groups of 8-12 people</span></span><br>
+                            <span class="text-small"><i class="fas fa-clock"></i> <span data-key="flexible">Flexible schedule</span></span><br>
+                            <span class="text-small"><i class="fas fa-certificate"></i> <span data-key="certificate">Certificate upon completion</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sports -->
+        <section id="sport-page" class="section hidden section-dark">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="sport_title">TOGU Sports Sections</h2>
+                    <p class="section-subtitle" data-key="sport_subtitle">More than 25 sections for maintaining health and active lifestyle</p>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-key="table_sport">Sport</th>
+                                <th data-key="table_coach">Coach/Manager</th>
+                                <th data-key="table_contacts">Contacts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td data-key="sport_basketball_m">Basketball (men)</td><td><span data-key="coach_ryzhankov">Ryzhankov Alexey Vitalievich</span></td><td><span data-key="phone_0878123">8-999-087-81-23</span></td></tr>
+                            <tr><td data-key="sport_basketball_f">Basketball (women)</td><td><span data-key="coach_chaikovsky">Chaikovsky Vladimir Igorevich</span></td><td><span data-key="phone_4084765">8-929-408-47-65</span></td></tr>
+                            <tr><td data-key="sport_volleyball">Volleyball</td><td><span data-key="coach_aponina">Aponina Alla Konstantinovna</span></td><td><span data-key="phone_2101168">8-924-210-11-68</span></td></tr>
+                            <tr><td data-key="sport_futsal">Futsal</td><td><span data-key="coach_neimakin">Neimakin Alexander Igorevich</span></td><td><span data-key="phone_0841077">8-999-084-10-77</span></td></tr>
+                            <tr><td data-key="sport_skiing">Skiing</td><td><span data-key="coach_tarasov">Tarasov Anton Nikolaevich</span></td><td><span data-key="phone_5439049">8-914-543-90-49</span></td></tr>
+                            <tr><td data-key="sport_orienteering">Orienteering</td><td><span data-key="coach_potapov">Potapov Sergey Yurievich</span></td><td><span data-key="phone_2198020">8-924-219-80-20</span></td></tr>
+                            <tr><td data-key="sport_badminton">Badminton</td><td><span data-key="coach_vorobiev">Vorobiev Pavel Viktorovich</span></td><td><span data-key="phone_2106705">8-914-210-67-05</span></td></tr>
+                            <tr><td data-key="sport_tabletennis">Table tennis</td><td><span data-key="coach_gorokhov">Gorokhov Konstantin Eduardovich</span></td><td><span data-key="phone_1105062">8-924-110-50-62</span></td></tr>
+                            <tr><td data-key="sport_sambo">Sambo/Judo</td><td><span data-key="coach_ikonnikov">Ikonnikov Evgeny Mikhailovich</span></td><td><span data-key="phone_4126626">8-914-412-66-26</span></td></tr>
+                            <tr><td data-key="sport_cheerleading">Cheerleading</td><td><span data-key="coach_chikvatadze">Chikvatadze Alexandra Anatolievna</span></td><td><span data-key="phone_5480759">8-914-548-07-59</span></td></tr>
+                            <tr><td data-key="sport_hockey">Hockey</td><td><span data-key="coach_egorychev">Egorychev Igor Evgenievich</span></td><td><span data-key="phone_2164115">8-914-216-41-15</span></td></tr>
+                            <tr><td data-key="sport_chess">Chess</td><td><span data-key="coach_dzhafarova">Dzhafarova Dinara Ilkhamovna</span></td><td><span data-key="phone_0838304">8-999-083-83-04</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cards-grid mt-5">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-swimming-pool"></i>
+                            </div>
+                            <h3 data-key="facilities_title">Sports Facilities</h3>
+                            <p><strong data-key="pool">TOGU Swimming Pool:</strong> <span data-key="pool_desc">Modern 25-meter pool with professional equipment</span></p>
+                            <p><strong data-key="gym_halls">Game halls:</strong> <span data-key="gym_halls_desc">6 specialized halls for various sports</span></p>
+                            <p><strong data-key="outdoor">Outdoor facilities:</strong> <span data-key="outdoor_desc">Football field, tennis courts, workout zones</span></p>
+                            <p><strong data-key="ski_base">Ski base:</strong> <span data-key="ski_base_desc">Modern equipment for winter sports</span></p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 data-key="achievements_title">Athletes' Achievements</h3>
+                            <ul class="list-modern">
+                                <li data-key="achievement_1">2 International Masters of Sport</li>
+                                <li data-key="achievement_2">11 Masters of Sport of Russia</li>
+                                <li data-key="achievement_3">45 Candidate Masters of Sport</li>
+                                <li data-key="achievement_4">75 mass category athletes</li>
+                                <li data-key="achievement_5">Participation in Russian and Far Eastern championships</li>
+                            </ul>
+                            <p class="mt-3"><strong data-key="club_name">Sports Club "Politechnik":</strong> <span data-key="club_desc">Founded in 2007. Organizes over 100 competitions annually with 3500+ participants.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life in Khabarovsk -->
+        <section id="life-page" class="section hidden section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="life_title">Life in Khabarovsk</h2>
+                    <p class="section-subtitle" data-key="life_subtitle">Everything you need to know about the city, dormitories and leisure</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3 data-key="campus_title">Student Campus</h3>
+                            <p data-key="campus_desc">11 modern dormitories with 4472 places. Each dormitory has:</p>
+                            <ul class="list-modern">
+                                <li><strong data-key="wifi">High-speed Wi-Fi:</strong> <span data-key="wifi_desc">Possibility to connect high-speed internet throughout the territory</span></li>
+                                <li><strong data-key="sport_rooms">Sports rooms:</strong> <span data-key="sport_rooms_desc">Exercise equipment and sports inventory in each dormitory</span></li>
+                                <li><strong data-key="kitchens">Kitchens:</strong> <span data-key="kitchens_desc">Equipped kitchens on each floor</span></li>
+                                <li><strong data-key="laundry">Laundry:</strong> <span data-key="laundry_desc">Washing machines and dryers</span></li>
+                                <li><strong data-key="study_rooms">Study rooms:</strong> <span data-key="study_rooms_desc">Spaces for independent work</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h3 data-key="student_office_title">Student Office</h3>
+                            <p><strong data-key="main_building">Main building:</strong><br>
+                            <span data-key="address">Address:</span> <span data-key="address_main_building">Tikhookeanskaya st., 136, room 245л</span><br>
+                            <span data-key="hours">Working hours:</span> <span data-key="hours_student_office">9:00-12:30, 13:30-16:00</span><br>
+                            <span data-key="phone">Phone:</span> <span data-key="phone_student_office_main">8 (4212) 97-97-90</span></p>
+                            
+                            <p><strong data-key="second_building">Second building:</strong><br>
+                            <span data-key="address">Address:</span> <span data-key="address_second_building">Tikhookeanskaya st., 134, room 219</span><br>
+                            <span data-key="hours">Working hours:</span> <span data-key="hours_student_office">9:00-12:30, 13:30-16:00</span><br>
+                            <span data-key="phone">Phone:</span> <span data-key="phone_student_office_second">8 (4212) 97-98-27 ext. 3921</span></p>
+                            
+                            <p><strong data-key="head">Head:</strong> <span data-key="head_name">Novikova Anna Mikhailovna (room 243l, main building)</span><br>
+                            <span data-key="email">Email:</span> stud-of@togudv.ru</p>
+                            <div class="mt-3 text-small">
+                                <i class="fas fa-info-circle"></i> <span data-key="study_certificate">Study certificates can be ordered through personal account on TOGU portal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 data-key="alumni_title">International Alumni Association</h3>
+                            <p data-key="alumni_desc">Founded on May 24, 2016. Unites over 2000 graduates from different countries.</p>
+                            <p><strong data-key="tasks">Association tasks:</strong></p>
+                            <ul class="list-modern">
+                                <li data-key="task_1">Uniting international students and alumni</li>
+                                <li data-key="task_2">Assisting with employment and career growth</li>
+                                <li data-key="task_3">Strengthening ties between alumni and university</li>
+                                <li data-key="task_4">Promoting TOGU brand internationally</li>
+                                <li data-key="task_5">Organizing cultural and professional events</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4" style="margin: 0 20px;">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h3 data-key="city_title">About Khabarovsk City</h3>
+                        <p data-key="city_desc1">Khabarovsk – capital of the Far Eastern Federal District, a modern metropolis with unique location at the confluence of Amur and Ussuri rivers. The city combines rich historical heritage with dynamic development, offering ideal environment for study and life.</p>
+                        <p data-key="city_desc2">Khabarovsk is known as 'city of bridges' – here is one of the longest bridges in Russia across Amur river. The city has developed infrastructure, many parks, embankments, modern shopping centers and cultural institutions.</p>
+                        <p data-key="city_desc3">Thanks to proximity to borders of China, Japan and Korea, Khabarovsk is an important international transport hub and center of intercultural interaction in Asia-Pacific region.</p>
+                        <div class="stats-grid mt-4">
+                            <div class="stat-item">
+                                <span class="stat-number">600000+</span>
+                                <span class="stat-label" data-key="stat_residents">residents</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label" data-key="stat_universities">universities</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">30+</span>
+                                <span class="stat-label" data-key="stat_parks">parks and squares</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">15</span>
+                                <span class="stat-label" data-key="stat_museums">museums and theaters</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section id="support-page" class="section hidden">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="support_title">Student Support</h2>
+                    <p class="section-subtitle" data-key="support_subtitle">We are always ready to help with any questions</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h3 data-key="emergency_title">Emergency Help</h3>
+                            <ul class="list-modern">
+                                <li><strong data-key="emergency_number">Emergency number:</strong> <span data-key="emergency_112">112 - Russian Emergency Services</span></li>
+                                <li><strong data-key="ambulance">Ambulance:</strong> <span data-key="ambulance_103">103 - Medical help</span></li>
+                                <li><strong data-key="police">Police:</strong> <span data-key="police_102">102 - Russian Police</span></li>
+                                <li><strong data-key="fire">Fire service:</strong> <span data-key="fire_101">101</span></li>
+                                <li><strong data-key="gas">Gas service:</strong> <span data-key="gas_104">104</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 data-key="psychological_title">Psychological Support</h3>
+                            <p data-key="psychological_desc">Free psychologist consultations available for all students:</p>
+                            <ul class="list-modern">
+                                <li><strong data-key="schedule">Schedule:</strong> <span data-key="schedule_hours">Monday-Friday, 9:00-18:00</span></li>
+                                <li><strong data-key="location">Location:</strong> <span data-key="location_room">Room 312, main building</span></li>
+                                <li><strong data-key="phone">Phone:</strong> <span data-key="phone_psychologist">+7 (4212) 12-34-57</span></li>
+                                <li><strong data-key="appointment">Appointment:</strong> <span data-key="appointment_method">Through curator or by phone</span></li>
+                            </ul>
+                            <p class="mt-3" data-key="confidential">Confidential, professional, in any language (with interpreter available).</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-hands"></i>
+                            </div>
+                            <h3 data-key="curator_title">Curator Support</h3>
+                            <p data-key="curator_desc">Each group of international students is assigned a curator who helps:</p>
+                            <ul class="list-modern">
+                                <li data-key="help_1">Adapt to life in Russia</li>
+                                <li data-key="help_2">Solve everyday issues</li>
+                                <li data-key="help_3">Process documents</li>
+                                <li data-key="help_4">Find necessary information</li>
+                                <li data-key="help_5">Organize cultural events</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-4" style="margin: 0 20px;">
+                    <div class="card-content">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 data-key="language_support_title">Language Support</h3>
+                        <p data-key="language_support_desc">TOGU provides comprehensive language support for international students, including:</p>
+                        <ul class="list-modern">
+                            <li><strong data-key="academic_writing">Academic writing:</strong> <span data-key="academic_writing_desc">Help with writing academic papers, essays and reports in Russian</span></li>
+                            <li><strong data-key="translation">Professional translation:</strong> <span data-key="translation_desc">Translator services for official documents and study materials</span></li>
+                            <li><strong data-key="clubs">Conversation clubs:</strong> <span data-key="clubs_desc">Weekly meetings with native speakers for practice</span></li>
+                            <li><strong data-key="testing">Language testing:</strong> <span data-key="testing_desc">Preparation for ТРКИ and other language tests</span></li>
+                            <li><strong data-key="digital">Digital resources:</strong> <span data-key="digital_desc">Access to online platforms, interactive courses and mobile applications</span></li>
+                        </ul>
+                        <p class="mt-3" data-key="language_goal">Our goal is to ensure complete language immersion and help students achieve level necessary for successful study and life in Russia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts -->
+        <section id="contacts-page" class="section hidden section-dark">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="contacts_title">TOGU Contacts</h2>
+                    <p class="section-subtitle" data-key="contacts_subtitle">Contact us in any convenient way</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 data-key="addresses_title">Main Addresses</h3>
+                            <p><strong data-key="main_campus">Main campus:</strong><br>
+                            <span data-key="address">Address:</span> <span data-key="address_campus">Tikhookeanskaya st., 136, Khabarovsk</span><br>
+                            <span data-key="phone">Phone:</span> +7 (4212) 97-97-00<br>
+                            <span data-key="email">E-mail:</span> mail@togudv.ru</p>
+                            
+                            <p><strong data-key="international_dept">International Department:</strong><br>
+                            <span data-key="address">Address:</span> <span data-key="address_international_dept_full">room 243ц, main campus</span><br>
+                            <span data-key="phone">Phone:</span> +7 (4212) 97-97-73 ext. 1293<br>
+                            <span data-key="email">E-mail:</span> study@togudv.ru</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 data-key="hours_title">Working Hours</h3>
+                            <p><strong data-key="rector_office">Rector's Office:</strong><br>
+                            <span data-key="hours_rector">Monday-Friday: 9:00-18:00</span><br>
+                            <span data-key="lunch">Lunch:</span> <span data-key="lunch_time">13:00-14:00</span></p>
+                            
+                            <p><strong data-key="int_dept_hours">International Department:</strong><br>
+                            <span data-key="hours_international">Monday-Friday: 9:00-17:00</span><br>
+                            <span data-key="lunch">Lunch:</span> <span data-key="lunch_time">13:00-14:00</span></p>
+                            
+                            <p><strong data-key="student_office_hours">Student Office:</strong><br>
+                            <span data-key="hours_student">Monday-Friday: 9:00-12:30, 13:30-16:00</span></p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <h3 data-key="social_title">Social Networks</h3>
+                            <div class="social-links">
+                                <a href="https://togudv.ru" class="social-link" target="_blank" title="Official website">
+                                    <i class="fas fa-globe"></i>
+                                </a>
+                                <a href="https://vk.com/togu_politen" class="social-link" target="_blank" title="VKontakte">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                                <a href="https://t.me/pacificnationaluniversity" class="social-link" target="_blank" title="Telegram">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@TOGUTime" class="social-link" target="_blank" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                            <p class="mt-4" data-key="social_desc">Subscribe to our social networks to stay updated with latest news, events and important announcements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <h3 class="text-center mb-3" data-key="search_title">Site Search</h3>
+                    <input type="text" class="search-input" placeholder="Enter your query..." id="siteSearch" data-key="search_placeholder">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 data-key="footer_about">About TOGU</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="switchPage('about')"><i class="fas fa-arrow-right"></i> <span data-key="footer_about_link">About University</span></a></li>
+                        <li><a href="#" onclick="switchPage('education')"><i class="fas fa-arrow-right"></i> <span data-key="footer_programs">Educational Programs</span></a></li>
+                        <li><a href="#" onclick="switchPage('sport')"><i class="fas fa-arrow-right"></i> <span data-key="footer_sports">Sports Life</span></a></li>
+                        <li><a href="#" onclick="switchPage('life')"><i class="fas fa-arrow-right"></i> <span data-key="footer_campus">Student Campus</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-key="footer_support">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="switchPage('admission')"><i class="fas fa-arrow-right"></i> <span data-key="footer_admission">Admission</span></a></li>
+                        <li><a href="#" onclick="switchPage('support')"><i class="fas fa-arrow-right"></i> <span data-key="footer_psychological">Psychological Help</span></a></li>
+                        <li><a href="#" onclick="switchPage('life')"><i class="fas fa-arrow-right"></i> <span data-key="footer_office">Student Office</span></a></li>
+                        <li><a href="#" onclick="switchPage('contacts')"><i class="fas fa-arrow-right"></i> <span data-key="footer_contacts">Contacts</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-key="footer_contact">Contacts</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> <span data-key="footer_address">Tikhookeanskaya st., 136, Khabarovsk</span></a></li>
+                        <li><a href="tel:+74212979700"><i class="fas fa-phone"></i> +7 (4212) 97-97-00</a></li>
+                        <li><a href="mailto:welcome@togu.ru"><i class="fas fa-envelope"></i> welcome@togu.ru</a></li>
+                        <li><a href="https://togudv.ru" target="_blank"><i class="fas fa-globe"></i> https://togudv.ru</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 data-key="footer_newsletter">Newsletter Subscription</h3>
+                    <p data-key="footer_newsletter_desc">Receive current information about admission, events and TOGU news</p>
+                    <div class="mt-3">
+                        <input type="email" placeholder="Your email" class="search-input" data-key="email_placeholder">
+                        <button class="btn btn-primary mt-2" style="width: 100%;" data-key="btn_subscribe"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p data-key="copyright">© 2025 Pacific National University. Foreign Student Portal.</p>
+                <p class="text-small mt-2" data-key="demo_note">This is a demo version of the site. For current information, please contact TOGU International Department.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== GLOBAL VARIABLES =====
+        let currentLanguage = 'en'; // Changed default to English
+        let currentPage = 'home-page';
+        let isDarkMode = false;
+
+        // ===== TRANSLATIONS =====
+        const translations = {
+            ru: {
+                // Logo
+                "logo_title": "TOGU International",
+                "logo_subtitle": "Портал для иностранных студентов",
+                
+                // Navigation
+                "nav_home": "Главная",
+                "nav_about": "Об университете",
+                "nav_admission": "Поступление",
+                "nav_education": "Обучение",
+                "nav_sport": "Спорт",
+                "nav_life": "Жизнь в Хабаровске",
+                "nav_support": "Поддержка",
+                "nav_contacts": "Контакты",
+                
+                // Home page
+                "hero_title": "Добро пожаловать в ТОГУ!",
+                "hero_subtitle": "Ваш путь к качественному образованию в России начинается здесь. Мы поможем вам адаптироваться и добиться успеха.",
+                "hero_apply": "Поступить в ТОГУ",
+                "hero_more": "Узнать больше",
+                
+                // Feature cards
+                "card_docs": "Оформление документов",
+                "card_docs_desc": "Пошаговая инструкция по получению визы, регистрации и другим юридическим вопросам",
+                "card_campus": "Студенческий городок",
+                "card_campus_desc": "Общежития, инфраструктура, правила проживания и полезные советы",
+                "card_community": "Сообщество",
+                "card_community_desc": "Знакомство с другими студентами, клубы по интересам и мероприятия",
+                
+                // Buttons
+                "btn_details": "Подробнее",
+                "btn_explore": "Исследовать",
+                "btn_join": "Присоединиться",
+                "btn_subscribe": "Подписаться",
+                "btn_search": "Поиск",
+                
+                // Loading
+                "loading_text": "Загрузка TOGU International...",
+                
+                // About page
+                "about_title": "Тихоокеанский государственный университет",
+                "about_subtitle": "Крупнейший образовательный и научный центр Дальнего Востока России",
+                "about_history_title": "История и достижения",
+                "about_history_text": "Основан в 1958 году как Хабаровский автомобильно-дорожный институт. Сегодня ТОГУ - это современный университет с богатыми традициями и инновационными подходами к образованию.",
+                "about_ranking": "Входит в топ-50 вузов России по качеству образования и научной деятельности.",
+                "about_timeline_title": "Историческая хроника",
+                "about_mission_title": "Миссия и ценности",
+                "about_mission_text": "Подготовка высококвалифицированных специалистов, способных решать сложные задачи в условиях глобальной экономики. Развитие научного потенциала Дальневосточного региона.",
+                "accreditation": "Государственная аккредитация",
+                "recognition": "Международное признание",
+                
+                // Timeline years
+                "year_1958": "1958",
+                "year_1962": "1962",
+                "year_1992": "1992",
+                "year_2005": "2005",
+                "year_2023": "2023",
+                
+                // Timeline
+                "timeline_1958": "- Основание Хабаровского автомобильно-дорожного института",
+                "timeline_1962": "- Преобразование в Хабаровский политехнический институт",
+                "timeline_1992": "- Статус технического университета",
+                "timeline_2005": "- Получение современного названия",
+                "timeline_2023": "- Входит в топ-50 вузов России",
+                
+                // Statistics
+                "stat_students": "студентов",
+                "stat_international": "иностранных студентов",
+                "stat_partners": "международных партнеров",
+                "stat_years": "лет истории",
+                
+                // Admission page
+                "admission_title": "Поступление для иностранных граждан",
+                "admission_subtitle": "Всё, что нужно знать для успешного поступления в ТОГУ",
+                "admission_deadlines": "Сроки подачи документов 2025",
+                
+                // Table headers
+                "table_category": "Категория",
+                "table_type": "Тип приема",
+                "table_period": "Период подачи",
+                "table_sport": "Вид спорта",
+                "table_coach": "Тренер/Менеджер",
+                "table_contacts": "Контакты",
+                
+                // Admission categories
+                "category_cis": "Граждане СНГ",
+                "category_quota": "Иностранные граждане по квоте",
+                "category_other": "Другие иностранные граждане",
+                
+                // Admission types
+                "type_budget_contract": "Бюджет/Контракт",
+                "type_budget": "Бюджет (250 мест)",
+                "type_contract": "Контракт",
+                
+                // Periods
+                "period_june_aug": "Июнь - Август 2025",
+                "period_oct_jan": "Октябрь 2024 - Январь 2025",
+                "period_june_aug2": "Июнь - Август 2025",
+                
+                // Documents
+                "docs_title": "Необходимые документы",
+                "doc_application": "Заявление установленного образца",
+                "doc_education": "Документ об образовании с нотариальным переводом",
+                "doc_passport": "Копия паспорта с переводом",
+                "doc_medical": "Медицинская справка 086/у",
+                "doc_hiv": "Сертификат об отсутствии ВИЧ",
+                "doc_photos": "6 фотографий 3x4 см",
+                
+                // Tuition
+                "tuition_title": "Стоимость обучения",
+                "bachelor": "Бакалавриат:",
+                "bachelor_price": "от 165,000 рублей/год",
+                "master": "Магистратура:",
+                "master_price": "от 185,000 рублей/год",
+                "phd": "Аспирантура:",
+                "phd_price": "от 210,000 рублей/год",
+                "prep": "Подготовительное отделение:",
+                "prep_price": "135,000 рублей/год",
+                "prices_year": "Цены на 2025 год",
+                
+                // Scholarships
+                "scholarships_title": "Стипендии",
+                "scholarship_state": "Государственная стипендия РФ:",
+                "scholarship_state_desc": "полное покрытие обучения + ежемесячная выплата",
+                "scholarship_togu": "Стипендия ТОГУ для отличников:",
+                "scholarship_togu_desc": "скидка 30-50% от стоимости обучения",
+                "scholarship_apr": "Гранты для стран АТР:",
+                "scholarship_apr_desc": "специальные программы для студентов из Китая, Вьетнама, Кореи",
+                
+                // Education page
+                "education_title": "Образовательные программы",
+                "education_subtitle": "Широкий выбор программ для международных студентов",
+                "preparatory_title": "Подготовительное отделение",
+                "preparatory_desc": "Программы довузовской подготовки для иностранных граждан:",
+                
+                // Profiles
+                "profile_humanities": "Гуманитарный профиль",
+                "profile_humanities_desc": "Изучение русского языка, истории, культуры и основ гуманитарных наук",
+                "profile_engineering": "Инженерно-технический",
+                "profile_engineering_desc": "Подготовка по математике, физике, информатике и техническим дисциплинам",
+                "profile_economics": "Экономический профиль",
+                "profile_economics_desc": "Изучение русского языка, математики, экономики и обществознания",
+                
+                // Russian courses
+                "russian_courses": "Курсы русского языка",
+                "russian_courses_desc": "Программы различных уровней от А1 до В2 для иностранных студентов",
+                "success_rate": "Уровень успеваемости студентов подготовительного отделения:",
+                "rate_80": "80%",
+                "approach_desc": "Индивидуальный подход, современные методики, опытные преподаватели",
+                
+                // Common terms
+                "duration": "Длительность:",
+                "duration_10": "10 месяцев (сентябрь-июнь)",
+                "intensity": "Интенсивность:",
+                "hours_30": "30 часов в неделю",
+                "groups": "Группы 8-12 человек",
+                "flexible": "Гибкий график занятий",
+                "certificate": "Сертификат по окончании",
+                
+                // Sports page - Russian version has only Russian names
+                "sport_title": "Спортивные секции ТОГУ",
+                "sport_subtitle": "Более 25 секций для поддержания здоровья и активного образа жизни",
+                
+                // Sports list
+                "sport_basketball_m": "Баскетбол (мужчины)",
+                "sport_basketball_f": "Баскетбол (женщины)",
+                "sport_volleyball": "Волейбол",
+                "sport_futsal": "Мини-футбол",
+                "sport_skiing": "Лыжные гонки",
+                "sport_orienteering": "Спортивное ориентирование",
+                "sport_badminton": "Бадминтон",
+                "sport_tabletennis": "Настольный теннис",
+                "sport_sambo": "Самбо/Дзюдо",
+                "sport_cheerleading": "Черлидинг",
+                "sport_hockey": "Хоккей",
+                "sport_chess": "Шахматы",
+                
+                // Coaches - Russian version has only Russian names
+                "coach_ryzhankov": "Рыжанков Алексей Витальевич",
+                "coach_chaikovsky": "Чайковский Владимир Игоревич",
+                "coach_aponina": "Апонина Алла Константиновна",
+                "coach_neimakin": "Неймакин Александр Игоревич",
+                "coach_tarasov": "Тарасов Антон Николаевич",
+                "coach_potapov": "Потапов Сергей Юрьевич",
+                "coach_vorobiev": "Воробьев Павел Викторович",
+                "coach_gorokhov": "Горохов Константин Эдуардович",
+                "coach_ikonnikov": "Иконников Евгений Михайлович",
+                "coach_chikvatadze": "Чиквадзе Александра Анатольевна",
+                "coach_egorychev": "Егорычев Игорь Евгеньевич",
+                "coach_dzhafarova": "Джафарова Динара Ильхамовна",
+                
+                // Phone numbers
+                "phone_0878123": "8-999-087-81-23",
+                "phone_4084765": "8-929-408-47-65",
+                "phone_2101168": "8-924-210-11-68",
+                "phone_0841077": "8-999-084-10-77",
+                "phone_5439049": "8-914-543-90-49",
+                "phone_2198020": "8-924-219-80-20",
+                "phone_2106705": "8-914-210-67-05",
+                "phone_1105062": "8-924-110-50-62",
+                "phone_4126626": "8-914-412-66-26",
+                "phone_5480759": "8-914-548-07-59",
+                "phone_2164115": "8-914-216-41-15",
+                "phone_0838304": "8-999-083-83-04",
+                
+                // Facilities
+                "facilities_title": "Спортивные сооружения",
+                "pool": "ФОК 'Бассейн ТОГУ':",
+                "pool_desc": "Современный 25-метровый бассейн с профессиональным оборудованием",
+                "gym_halls": "Игровые залы:",
+                "gym_halls_desc": "6 специализированных залов для различных видав спорта",
+                "outdoor": "Открытые площадки:",
+                "outdoor_desc": "Футбольное поле, теннисные корты, воркаут зоны",
+                "ski_base": "Лыжная база:",
+                "ski_base_desc": "Современное оборудование для зимних видов спорта",
+                
+                // Achievements
+                "achievements_title": "Достижения спортсменов ТОГУ",
+                "achievement_1": "2 мастера спорта международного класса",
+                "achievement_2": "11 мастеров спорта России",
+                "achievement_3": "45 кандидатов в мастера спорта",
+                "achievement_4": "75 спортсменов массовых разрядов",
+                "achievement_5": "Участие в чемпионатах России и Дальнего Востока",
+                "club_name": "Спортивный клуб 'Политехник':",
+                "club_desc": "Основан в 2007 году. Ежегодно проводит более 100 соревнований с участием 3500+ спортсменов.",
+                
+                // Life page
+                "life_title": "Жизнь в Хабаровске",
+                "life_subtitle": "Всё, что нужно знать о городе, общежитиях и досуге",
+                
+                // Campus
+                "campus_title": "Студенческий городок",
+                "campus_desc": "11 современных общежитий на 4472 места. В каждом общежитии есть:",
+                "wifi": "Высокоскоростной Wi-Fi:",
+                "wifi_desc": "Возможность подключения высокоскоростного интернета на всей территории",
+                "sport_rooms": "Спортивные комнаты:",
+                "sport_rooms_desc": "Тренажеры и спортинвентарь в каждом общежитии",
+                "kitchens": "Кухни:",
+                "kitchens_desc": "Оборудованные кухни на этажах",
+                "laundry": "Прачечные:",
+                "laundry_desc": "Стиральные машины и сушилки",
+                "study_rooms": "Учебные комнаты:",
+                "study_rooms_desc": "Пространства для самостоятельной работы",
+                
+                // Student office
+                "student_office_title": "Студенческий офис",
+                "main_building": "Основной корпус:",
+                "second_building": "Второй корпус:",
+                "address": "Адрес:",
+                "address_main_building": "ул. Тихоокеанская, 136, комната 245л",
+                "address_second_building": "ул. Тихоокеанская, 134, комната 219",
+                "hours": "График работы:",
+                "hours_student_office": "9:00-12:30, 13:30-16:00",
+                "phone": "Телефон:",
+                "phone_student_office_main": "8 (4212) 97-97-90",
+                "phone_student_office_second": "8 (4212) 97-98-27 доб. 3921",
+                "head": "Руководитель:",
+                "head_name": "Новикова Анна Михайловна (комната 243л, основной корпус)",
+                "email": "Электронная почта:",
+                "study_certificate": "Справки об обучении можно заказать через личный кабинет на портале ТОГУ",
+                
+                // Alumni
+                "alumni_title": "Ассоциация иностранных выпускников",
+                "alumni_desc": "Основана 24 мая 2016 года. Объединяет более 2000 выпускников из разных стран мира.",
+                "tasks": "Задачи ассоциации:",
+                "task_1": "Сплочение иностранных студентов и выпускников",
+                "task_2": "Содействие трудоустройству и карьерному росту",
+                "task_3": "Укрепление связей между выпускниками и университетом",
+                "task_4": "Продвижение бренда ТОГУ на международном уровне",
+                "task_5": "Организация культурных и профессиональных мероприятий",
+                
+                // City info
+                "city_title": "О городе Хабаровск",
+                "city_desc1": "Хабаровск – столица Дальневосточного федерального округа, современный мегаполис с уникальным расположением на слиянии рек Амур и Уссури. Город сочетает богатое историческое наследие с динамичным развитием, предлагая идеальную среду для учебы и жизни.",
+                "city_desc2": "Хабаровск известен как 'город мостов' – здесь находится один из самых длинных мостов в России через реку Амур. Город обладает развитой инфраструктурой, множеством парков, набережных, современными торговыми центрами и культурными учреждениями.",
+                "city_desc3": "Благодаря близости к границам Китая, Японии и Кореи, Хабаровск является важным международным транспортным узлом и центром межкультурного взаимодействия в Азиатско-Тихоокеанском регионе.",
+                
+                // City statistics
+                "stat_residents": "жителей",
+                "stat_universities": "вузов",
+                "stat_parks": "парков и скверов",
+                "stat_museums": "музеев и театров",
+                
+                // Support page
+                "support_title": "Поддержка студентов",
+                "support_subtitle": "Мы всегда готовы помочь в решении любых вопросов",
+                
+                // Emergency
+                "emergency_title": "Экстренная помощь",
+                "emergency_number": "Единый номер:",
+                "emergency_112": "112 - Единая служба спасения России",
+                "ambulance": "Скорая помощь:",
+                "ambulance_103": "103 - Медицинская помощь",
+                "police": "Полиция:",
+                "police_102": "102 - Полиция России",
+                "fire": "Пожарная служба:",
+                "fire_101": "101",
+                "gas": "Газовая служба:",
+                "gas_104": "104",
+                
+                // Psychological
+                "psychological_title": "Психологическая поддержка",
+                "psychological_desc": "Бесплатные консультации психолога доступны для всех студентов:",
+                "schedule": "График работы:",
+                "schedule_hours": "Понедельник-Пятница, 9:00-18:00",
+                "location": "Место:",
+                "location_room": "Кабинет 312, главный корпус",
+                "phone": "Телефон:",
+                "phone_psychologist": "+7 (4212) 12-34-57",
+                "appointment": "Запись:",
+                "appointment_method": "Через куратора или по телефону",
+                "confidential": "Конфиденциально, профессионально, на любом языке (при наличии переводчика).",
+                
+                // Curator
+                "curator_title": "Кураторская поддержка",
+                "curator_desc": "Каждой группе иностранных студентов назначается куратор, который помогает:",
+                "help_1": "Адаптироваться к жизни в России",
+                "help_2": "Решать бытовые вопросы",
+                "help_3": "Оформлять документы",
+                "help_4": "Находить необходимую информацию",
+                "help_5": "Организовывать культурные мероприятия",
+                
+                // Language support
+                "language_support_title": "Языковая поддержка",
+                "language_support_desc": "ТОГУ предоставляет комплексную языковую поддержку для иностранных студентов, включая:",
+                "academic_writing": "Академическое письмо:",
+                "academic_writing_desc": "Помощь в написании научных работ, эссе и отчетов на русском языке",
+                "translation": "Профессиональный перевод:",
+                "translation_desc": "Услуги переводчика для официальных документов и учебных материалов",
+                "clubs": "Разговорные клубы:",
+                "clubs_desc": "Еженедельные встречи с носителями языка для практики общения",
+                "testing": "Языковое тестирование:",
+                "testing_desc": "Подготовка к экзаменам ТРКИ и другим языковым тестам",
+                "digital": "Цифровые ресурсы:",
+                "digital_desc": "Доступ к онлайн-платформам, интерактивным курсам и мобильным приложениям",
+                "language_goal": "Наша цель – обеспечить полное языковое погружение и помочь студентам достичь уровня, необходимого для успешной учебы и жизни в России.",
+                
+                // Contacts page
+                "contacts_title": "Контакты ТОГУ",
+                "contacts_subtitle": "Свяжитесь с нами любым удобным способом",
+                
+                // Addresses
+                "addresses_title": "Основные адреса",
+                "main_campus": "Главный корпус:",
+                "address_campus": "г. Хабаровск, ул. Тихоокеанская, 136",
+                "international_dept": "Международный отдел:",
+                "address_international_dept_full": "комната 243ц, главный корпус",
+                
+                // Working hours
+                "hours_title": "График работы",
+                "rector_office": "Приемная ректора:",
+                "hours_rector": "Понедельник-Пятница: 9:00-18:00",
+                "int_dept_hours": "Международный отдел:",
+                "hours_international": "Понедельник-Пятница: 9:00-17:00",
+                "student_office_hours": "Студенческий офис:",
+                "hours_student": "Понедельник-Пятница: 9:00-12:30, 13:30-16:00",
+                "lunch": "Обед:",
+                "lunch_time": "13:00-14:00",
+                
+                // Social
+                "social_title": "Социальные сети",
+                "social_desc": "Подписывайтесь на наши социальные сети, чтобы быть в курсе последних новостей, мероприятий и важных объявлений.",
+                
+                // Search
+                "search_title": "Поиск по сайту",
+                "search_placeholder": "Введите запрос...",
+                "email_placeholder": "Ваш email",
+                
+                // Footer
+                "footer_about": "О ТОГУ",
+                "footer_about_link": "Об университете",
+                "footer_programs": "Образовательные программы",
+                "footer_sports": "Спортивная жизнь",
+                "footer_campus": "Студенческий городок",
+                "footer_support": "Поддержка",
+                "footer_admission": "Поступление",
+                "footer_psychological": "Психологическая помощь",
+                "footer_office": "Студенческий офис",
+                "footer_contacts": "Контакты",
+                "footer_contact": "Контакты",
+                "footer_address": "г. Хабаровск, ул. Тихоокеанская, 136",
+                "footer_newsletter": "Подписка на новости",
+                "footer_newsletter_desc": "Получайте актуальную информацию о поступлении, мероприятиях и новостях ТОГУ",
+                
+                // Copyright
+                "copyright": "© 2025 Тихоокеанский государственный университет. Портал для иностранных студентов.",
+                "demo_note": "Это демонстрационная версия сайта. Для актуальной информации обращайтесь в международный отдел ТОГУ."
+            },
+            en: {
+                // Logo
+                "logo_title": "TOGU International",
+                "logo_subtitle": "Foreign Student Portal",
+                
+                // Navigation
+                "nav_home": "Home",
+                "nav_about": "About University",
+                "nav_admission": "Admission",
+                "nav_education": "Education",
+                "nav_sport": "Sports",
+                "nav_life": "Life in Khabarovsk",
+                "nav_support": "Support",
+                "nav_contacts": "Contacts",
+                
+                // Home page
+                "hero_title": "Welcome to TOGU!",
+                "hero_subtitle": "Your path to quality education in Russia starts here. We will help you adapt and succeed.",
+                "hero_apply": "Apply to TOGU",
+                "hero_more": "Learn More",
+                
+                // Feature cards
+                "card_docs": "Document Processing",
+                "card_docs_desc": "Step-by-step guide for visa, registration and other legal matters",
+                "card_campus": "Student Campus",
+                "card_campus_desc": "Dormitories, infrastructure, living rules and useful tips",
+                "card_community": "Community",
+                "card_community_desc": "Meeting other students, interest clubs and events",
+                
+                // Buttons
+                "btn_details": "Details",
+                "btn_explore": "Explore",
+                "btn_join": "Join",
+                "btn_subscribe": "Subscribe",
+                "btn_search": "Search",
+                
+                // Loading
+                "loading_text": "Loading TOGU International...",
+                
+                // About page
+                "about_title": "Pacific National University",
+                "about_subtitle": "The largest educational and scientific center in the Russian Far East",
+                "about_history_title": "History and Achievements",
+                "about_history_text": "Founded in 1958 as Khabarovsk Automobile and Road Institute. Today TOGU is a modern university with rich traditions and innovative approaches to education.",
+                "about_ranking": "Ranked among top-50 universities in Russia for education quality and research activity.",
+                "about_timeline_title": "Historical Timeline",
+                "about_mission_title": "Mission and Values",
+                "about_mission_text": "Training highly qualified specialists capable of solving complex tasks in global economy conditions. Development of scientific potential in the Far Eastern region.",
+                "accreditation": "State accreditation",
+                "recognition": "International recognition",
+                
+                // Timeline years
+                "year_1958": "1958",
+                "year_1962": "1962",
+                "year_1992": "1992",
+                "year_2005": "2005",
+                "year_2023": "2023",
+                
+                // Timeline
+                "timeline_1958": "- Foundation of Khabarovsk Automobile and Road Institute",
+                "timeline_1962": "- Transformation into Khabarovsk Polytechnic Institute",
+                "timeline_1992": "- Status of technical university",
+                "timeline_2005": "- Receiving current name",
+                "timeline_2023": "- Ranked among top-50 Russian universities",
+                
+                // Statistics
+                "stat_students": "students",
+                "stat_international": "international students",
+                "stat_partners": "international partners",
+                "stat_years": "years of history",
+                
+                // Admission page
+                "admission_title": "Admission for Foreign Citizens",
+                "admission_subtitle": "Everything you need to know for successful admission to TOGU",
+                "admission_deadlines": "Application Deadlines 2025",
+                
+                // Table headers
+                "table_category": "Category",
+                "table_type": "Type of Admission",
+                "table_period": "Application Period",
+                "table_sport": "Sport",
+                "table_coach": "Coach/Manager",
+                "table_contacts": "Contacts",
+                
+                // Admission categories
+                "category_cis": "CIS Citizens",
+                "category_quota": "Foreign citizens by quota",
+                "category_other": "Other foreign citizens",
+                
+                // Admission types
+                "type_budget_contract": "Budget/Contract",
+                "type_budget": "Budget (250 places)",
+                "type_contract": "Contract",
+                
+                // Periods
+                "period_june_aug": "June - August 2025",
+                "period_oct_jan": "October 2024 - January 2025",
+                "period_june_aug2": "June - August 2025",
+                
+                // Documents
+                "docs_title": "Required Documents",
+                "doc_application": "Application form",
+                "doc_education": "Education certificate with notarized translation",
+                "doc_passport": "Passport copy with translation",
+                "doc_medical": "Medical certificate 086/u",
+                "doc_hiv": "HIV-free certificate",
+                "doc_photos": "6 photos 3x4 cm",
+                
+                // Tuition
+                "tuition_title": "Tuition Fees",
+                "bachelor": "Bachelor's:",
+                "bachelor_price": "from 165,000 rubles/year",
+                "master": "Master's:",
+                "master_price": "from 185,000 rubles/year",
+                "phd": "PhD:",
+                "phd_price": "from 210,000 rubles/year",
+                "prep": "Preparatory department:",
+                "prep_price": "135,000 rubles/year",
+                "prices_year": "Prices for 2025",
+                
+                // Scholarships
+                "scholarships_title": "Scholarships",
+                "scholarship_state": "Russian Government Scholarship:",
+                "scholarship_state_desc": "full tuition coverage + monthly allowance",
+                "scholarship_togu": "TOGU Scholarship for excellent students:",
+                "scholarship_togu_desc": "30-50% tuition discount",
+                "scholarship_apr": "Asia-Pacific Region Grants:",
+                "scholarship_apr_desc": "special programs for students from China, Vietnam, Korea",
+                
+                // Education page
+                "education_title": "Educational Programs",
+                "education_subtitle": "Wide range of programs for international students",
+                "preparatory_title": "Preparatory Department",
+                "preparatory_desc": "Pre-university training programs for foreign citizens:",
+                
+                // Profiles
+                "profile_humanities": "Humanities Profile",
+                "profile_humanities_desc": "Study of Russian language, history, culture and basics of humanities",
+                "profile_engineering": "Engineering-Technical",
+                "profile_engineering_desc": "Preparation in mathematics, physics, computer science and technical disciplines",
+                "profile_economics": "Economics Profile",
+                "profile_economics_desc": "Study of Russian language, mathematics, economics and social studies",
+                
+                // Russian courses
+                "russian_courses": "Russian Language Courses",
+                "russian_courses_desc": "Various level programs from A1 to B2 for international students",
+                "success_rate": "Success rate of preparatory department students:",
+                "rate_80": "80%",
+                "approach_desc": "Individual approach, modern methods, experienced teachers",
+                
+                // Common terms
+                "duration": "Duration:",
+                "duration_10": "10 months (September-June)",
+                "intensity": "Intensity:",
+                "hours_30": "30 hours per week",
+                "groups": "Groups of 8-12 people",
+                "flexible": "Flexible schedule",
+                "certificate": "Certificate upon completion",
+                
+                // Sports page
+                "sport_title": "TOGU Sports Sections",
+                "sport_subtitle": "More than 25 sections for maintaining health and active lifestyle",
+                
+                // Sports list
+                "sport_basketball_m": "Basketball (men)",
+                "sport_basketball_f": "Basketball (women)",
+                "sport_volleyball": "Volleyball",
+                "sport_futsal": "Futsal",
+                "sport_skiing": "Skiing",
+                "sport_orienteering": "Orienteering",
+                "sport_badminton": "Badminton",
+                "sport_tabletennis": "Table tennis",
+                "sport_sambo": "Sambo/Judo",
+                "sport_cheerleading": "Cheerleading",
+                "sport_hockey": "Hockey",
+                "sport_chess": "Chess",
+                
+                // Coaches - English version: Russian name + English transcription in parentheses
+                "coach_ryzhankov": "Рыжанков Алексей Витальевич (Ryzhankov Alexey Vitalievich)",
+                "coach_chaikovsky": "Чайковский Владимир Игоревич (Chaikovsky Vladimir Igorevich)",
+                "coach_aponina": "Апонина Алла Константиновна (Aponina Alla Konstantinovna)",
+                "coach_neimakin": "Неймакин Александр Игоревич (Neimakin Alexander Igorevich)",
+                "coach_tarasov": "Тарасов Антон Николаевич (Tarasov Anton Nikolaevich)",
+                "coach_potapov": "Потапов Сергей Юрьевич (Potapov Sergey Yurievich)",
+                "coach_vorobiev": "Воробьев Павел Викторович (Vorobiev Pavel Viktorovich)",
+                "coach_gorokhov": "Горохов Константин Эдуардович (Gorokhov Konstantin Eduardovich)",
+                "coach_ikonnikov": "Иконников Евгений Михайлович (Ikonnikov Evgeny Mikhailovich)",
+                "coach_chikvatadze": "Чиквадзе Александра Анатольевна (Chikvatadze Alexandra Anatolievna)",
+                "coach_egorychev": "Егорычев Игорь Евгеньевич (Egorychev Igor Evgenievich)",
+                "coach_dzhafarova": "Джафарова Динара Ильхамовна (Dzhafarova Dinara Ilkhamovna)",
+                
+                // Phone numbers
+                "phone_0878123": "8-999-087-81-23",
+                "phone_4084765": "8-929-408-47-65",
+                "phone_2101168": "8-924-210-11-68",
+                "phone_0841077": "8-999-084-10-77",
+                "phone_5439049": "8-914-543-90-49",
+                "phone_2198020": "8-924-219-80-20",
+                "phone_2106705": "8-914-210-67-05",
+                "phone_1105062": "8-924-110-50-62",
+                "phone_4126626": "8-914-412-66-26",
+                "phone_5480759": "8-914-548-07-59",
+                "phone_2164115": "8-914-216-41-15",
+                "phone_0838304": "8-999-083-83-04",
+                
+                // Facilities
+                "facilities_title": "Sports Facilities",
+                "pool": "TOGU Swimming Pool:",
+                "pool_desc": "Modern 25-meter pool with professional equipment",
+                "gym_halls": "Game halls:",
+                "gym_halls_desc": "6 specialized halls for various sports",
+                "outdoor": "Outdoor facilities:",
+                "outdoor_desc": "Football field, tennis courts, workout zones",
+                "ski_base": "Ski base:",
+                "ski_base_desc": "Modern equipment for winter sports",
+                
+                // Achievements
+                "achievements_title": "Athletes' Achievements",
+                "achievement_1": "2 International Masters of Sport",
+                "achievement_2": "11 Masters of Sport of Russia",
+                "achievement_3": "45 Candidate Masters of Sport",
+                "achievement_4": "75 mass category athletes",
+                "achievement_5": "Participation in Russian and Far Eastern championships",
+                "club_name": "Sports Club 'Politechnik':",
+                "club_desc": "Founded in 2007. Organizes over 100 competitions annually with 3500+ participants.",
+                
+                // Life page
+                "life_title": "Life in Khabarovsk",
+                "life_subtitle": "Everything you need to know about the city, dormitories and leisure",
+                
+                // Campus
+                "campus_title": "Student Campus",
+                "campus_desc": "11 modern dormitories with 4472 places. Each dormitory has:",
+                "wifi": "High-speed Wi-Fi:",
+                "wifi_desc": "Possibility to connect high-speed internet throughout the territory",
+                "sport_rooms": "Sports rooms:",
+                "sport_rooms_desc": "Exercise equipment and sports inventory in each dormitory",
+                "kitchens": "Kitchens:",
+                "kitchens_desc": "Equipped kitchens on each floor",
+                "laundry": "Laundry:",
+                "laundry_desc": "Washing machines and dryers",
+                "study_rooms": "Study rooms:",
+                "study_rooms_desc": "Spaces for independent work",
+                
+                // Student office - English version with "245л" instead of "245l"
+                "student_office_title": "Student Office",
+                "main_building": "Main building:",
+                "second_building": "Second building:",
+                "address": "Address:",
+                "address_main_building": "Tikhookeanskaya st., 136, room 245л",
+                "address_second_building": "Tikhookeanskaya st., 134, room 219",
+                "hours": "Working hours:",
+                "hours_student_office": "9:00-12:30, 13:30-16:00",
+                "phone": "Phone:",
+                "phone_student_office_main": "8 (4212) 97-97-90",
+                "phone_student_office_second": "8 (4212) 97-98-27 ext. 3921",
+                "head": "Head:",
+                "head_name": "Novikova Anna Mikhailovna (room 243l, main building)",
+                "email": "Email:",
+                "study_certificate": "Study certificates can be ordered through personal account on TOGU portal",
+                
+                // Alumni
+                "alumni_title": "International Alumni Association",
+                "alumni_desc": "Founded on May 24, 2016. Unites over 2000 graduates from different countries.",
+                "tasks": "Association tasks:",
+                "task_1": "Uniting international students and alumni",
+                "task_2": "Assisting with employment and career growth",
+                "task_3": "Strengthening ties between alumni and university",
+                "task_4": "Promoting TOGU brand internationally",
+                "task_5": "Organizing cultural and professional events",
+                
+                // City info
+                "city_title": "About Khabarovsk City",
+                "city_desc1": "Khabarovsk – capital of the Far Eastern Federal District, a modern metropolis with unique location at the confluence of Amur and Ussuri rivers. The city combines rich historical heritage with dynamic development, offering ideal environment for study and life.",
+                "city_desc2": "Khabarovsk is known as 'city of bridges' – here is one of the longest bridges in Russia across Amur river. The city has developed infrastructure, many parks, embankments, modern shopping centers and cultural institutions.",
+                "city_desc3": "Thanks to proximity to borders of China, Japan and Korea, Khabarovsk is an important international transport hub and center of intercultural interaction in Asia-Pacific region.",
+                
+                // City statistics
+                "stat_residents": "residents",
+                "stat_universities": "universities",
+                "stat_parks": "parks and squares",
+                "stat_museums": "museums and theaters",
+                
+                // Support page
+                "support_title": "Student Support",
+                "support_subtitle": "We are always ready to help with any questions",
+                
+                // Emergency
+                "emergency_title": "Emergency Help",
+                "emergency_number": "Emergency number:",
+                "emergency_112": "112 - Russian Emergency Services",
+                "ambulance": "Ambulance:",
+                "ambulance_103": "103 - Medical help",
+                "police": "Police:",
+                "police_102": "102 - Russian Police",
+                "fire": "Fire service:",
+                "fire_101": "101",
+                "gas": "Gas service:",
+                "gas_104": "104",
+                
+                // Psychological
+                "psychological_title": "Psychological Support",
+                "psychological_desc": "Free psychologist consultations available for all students:",
+                "schedule": "Schedule:",
+                "schedule_hours": "Monday-Friday, 9:00-18:00",
+                "location": "Location:",
+                "location_room": "Room 312, main building",
+                "phone": "Phone:",
+                "phone_psychologist": "+7 (4212) 12-34-57",
+                "appointment": "Appointment:",
+                "appointment_method": "Through curator or by phone",
+                "confidential": "Confidential, professional, in any language (with interpreter available).",
+                
+                // Curator
+                "curator_title": "Curator Support",
+                "curator_desc": "Each group of international students is assigned a curator who helps:",
+                "help_1": "Adapt to life in Russia",
+                "help_2": "Solve everyday issues",
+                "help_3": "Process documents",
+                "help_4": "Find necessary information",
+                "help_5": "Organize cultural events",
+                
+                // Language support
+                "language_support_title": "Language Support",
+                "language_support_desc": "TOGU provides comprehensive language support for international students, including:",
+                "academic_writing": "Academic writing:",
+                "academic_writing_desc": "Help with writing academic papers, essays and reports in Russian",
+                "translation": "Professional translation:",
+                "translation_desc": "Translator services for official documents and study materials",
+                "clubs": "Conversation clubs:",
+                "clubs_desc": "Weekly meetings with native speakers for practice",
+                "testing": "Language testing:",
+                "testing_desc": "Preparation for ТРКИ and other language tests",
+                "digital": "Digital resources:",
+                "digital_desc": "Access to online platforms, interactive courses and mobile applications",
+                "language_goal": "Our goal is to ensure complete language immersion and help students achieve level necessary for successful study and life in Russia.",
+                
+                // Contacts page
+                "contacts_title": "TOGU Contacts",
+                "contacts_subtitle": "Contact us in any convenient way",
+                
+                // Addresses
+                "addresses_title": "Main Addresses",
+                "main_campus": "Main campus:",
+                "address_campus": "Tikhookeanskaya st., 136, Khabarovsk",
+                "international_dept": "International Department:",
+                "address_international_dept_full": "room 243ц, main campus",
+                
+                // Working hours
+                "hours_title": "Working Hours",
+                "rector_office": "Rector's Office:",
+                "hours_rector": "Monday-Friday: 9:00-18:00",
+                "int_dept_hours": "International Department:",
+                "hours_international": "Monday-Friday: 9:00-17:00",
+                "student_office_hours": "Student Office:",
+                "hours_student": "Monday-Friday: 9:00-12:30, 13:30-16:00",
+                "lunch": "Lunch:",
+                "lunch_time": "13:00-14:00",
+                
+                // Social
+                "social_title": "Social Networks",
+                "social_desc": "Subscribe to our social networks to stay updated with latest news, events and important announcements.",
+                
+                // Search
+                "search_title": "Site Search",
+                "search_placeholder": "Enter your query...",
+                "email_placeholder": "Your email",
+                
+                // Footer
+                "footer_about": "About TOGU",
+                "footer_about_link": "About University",
+                "footer_programs": "Educational Programs",
+                "footer_sports": "Sports Life",
+                "footer_campus": "Student Campus",
+                "footer_support": "Support",
+                "footer_admission": "Admission",
+                "footer_psychological": "Psychological Help",
+                "footer_office": "Student Office",
+                "footer_contacts": "Contacts",
+                "footer_contact": "Contacts",
+                "footer_address": "Tikhookeanskaya st., 136, Khabarovsk",
+                "footer_newsletter": "Newsletter Subscription",
+                "footer_newsletter_desc": "Receive current information about admission, events and TOGU news",
+                
+                // Copyright
+                "copyright": "© 2025 Pacific National University. Foreign Student Portal.",
+                "demo_note": "This is a demo version of the site. For current information, please contact TOGU International Department."
+            },
+            cn: {
+                // Logo
+                "logo_title": "TOGU International",
+                "logo_subtitle": "外国学生门户网站",
+                
+                // Navigation
+                "nav_home": "首页",
+                "nav_about": "关于大学",
+                "nav_admission": "入学",
+                "nav_education": "学习",
+                "nav_sport": "体育",
+                "nav_life": "哈巴罗夫斯克生活",
+                "nav_support": "支持",
+                "nav_contacts": "联系方式",
+                
+                // Home page
+                "hero_title": "欢迎来到太平洋国立大学！",
+                "hero_subtitle": "您在俄罗斯获得优质教育的道路从这里开始。我们将帮助您适应并取得成功。",
+                "hero_apply": "申请入学",
+                "hero_more": "了解更多",
+                
+                // Feature cards
+                "card_docs": "文件处理",
+                "card_docs_desc": "签证、注册和其他法律事务的逐步指南",
+                "card_campus": "学生校园",
+                "card_campus_desc": "宿舍、基础设施、生活规则和有用提示",
+                "card_community": "社区",
+                "card_community_desc": "认识其他学生、兴趣俱乐部和活动",
+                
+                // Buttons
+                "btn_details": "详情",
+                "btn_explore": "探索",
+                "btn_join": "加入",
+                "btn_subscribe": "订阅",
+                "btn_search": "搜索",
+                
+                // Loading
+                "loading_text": "正在加载 TOGU International...",
+                
+                // About page
+                "about_title": "太平洋国立大学",
+                "about_subtitle": "俄罗斯远东地区最大的教育和科学中心",
+                "about_history_title": "历史与成就",
+                "about_history_text": "成立于1958年，原名哈巴罗夫斯克汽车公路学院。今天，太平洋国立大学是一所拥有丰富传统和创新教育方法的现代大学。",
+                "about_ranking": "在俄罗斯教育质量和科研活动方面排名前50位。",
+                "about_timeline_title": "历史时间线",
+                "about_mission_title": "使命与价值观",
+                "about_mission_text": "培养能够在全球经济条件下解决复杂任务的高素质专家。发展远东地区的科学潜力。",
+                "accreditation": "国家认证",
+                "recognition": "国际认可",
+                
+                // Timeline years
+                "year_1958": "1958",
+                "year_1962": "1962",
+                "year_1992": "1992",
+                "year_2005": "2005",
+                "year_2023": "2023",
+                
+                // Timeline
+                "timeline_1958": "- 哈巴罗夫斯克汽车公路学院成立",
+                "timeline_1962": "- 转型为哈巴罗夫斯克理工学院",
+                "timeline_1992": "- 获得技术大学地位",
+                "timeline_2005": "- 获得现名",
+                "timeline_2023": "- 进入俄罗斯大学前50名",
+                
+                // Statistics
+                "stat_students": "学生",
+                "stat_international": "国际学生",
+                "stat_partners": "国际合作伙伴",
+                "stat_years": "年历史",
+                
+                // Admission page
+                "admission_title": "外国公民入学",
+                "admission_subtitle": "成功入读太平洋国立大学所需的一切信息",
+                "admission_deadlines": "2025年申请截止日期",
+                
+                // Table headers
+                "table_category": "类别",
+                "table_type": "录取类型",
+                "table_period": "申请期",
+                "table_sport": "体育项目",
+                "table_coach": "教练/经理",
+                "table_contacts": "联系方式",
+                
+                // Admission categories
+                "category_cis": "独联体国家公民",
+                "category_quota": "配额外国公民",
+                "category_other": "其他外国公民",
+                
+                // Admission types
+                "type_budget_contract": "预算/合同",
+                "type_budget": "预算（250个名额）",
+                "type_contract": "合同",
+                
+                // Periods
+                "period_june_aug": "2025年6月-8月",
+                "period_oct_jan": "2024年10月-2025年1月",
+                "period_june_aug2": "2025年6月-8月",
+                
+                // Documents
+                "docs_title": "所需文件",
+                "doc_application": "申请表",
+                "doc_education": "经公证翻译的学历证书",
+                "doc_passport": "带翻译的护照复印件",
+                "doc_medical": "医疗证明086/u",
+                "doc_hiv": "无HIV证明",
+                "doc_photos": "6张3x4厘米照片",
+                
+                // Tuition
+                "tuition_title": "学费",
+                "bachelor": "本科：",
+                "bachelor_price": "每年165,000卢布起",
+                "master": "硕士：",
+                "master_price": "每年185,000卢布起",
+                "phd": "博士：",
+                "phd_price": "每年210,000卢布起",
+                "prep": "预科系：",
+                "prep_price": "每年135,000卢布",
+                "prices_year": "2025年价格",
+                
+                // Scholarships
+                "scholarships_title": "奖学金",
+                "scholarship_state": "俄罗斯政府奖学金：",
+                "scholarship_state_desc": "全额学费覆盖+月度津贴",
+                "scholarship_togu": "太平洋国立大学优秀学生奖学金：",
+                "scholarship_togu_desc": "学费30-50%折扣",
+                "scholarship_apr": "亚太地区助学金：",
+                "scholarship_apr_desc": "针对来自中国、越南、韩国学生的特殊项目",
+                
+                // Education page
+                "education_title": "教育项目",
+                "education_subtitle": "为国际学生提供的广泛课程选择",
+                "preparatory_title": "预科系",
+                "preparatory_desc": "外国公民的大学预科培训项目：",
+                
+                // Profiles
+                "profile_humanities": "人文方向",
+                "profile_humanities_desc": "学习俄语、历史、文化和人文科学基础",
+                "profile_engineering": "工程技术方向",
+                "profile_engineering_desc": "数学、物理、计算机科学和技术学科的准备",
+                "profile_economics": "经济方向",
+                "profile_economics_desc": "学习俄语、数学、经济学和社会学",
+                
+                // Russian courses
+                "russian_courses": "俄语课程",
+                "russian_courses_desc": "为国际学生提供的A1到B2各级别课程",
+                "success_rate": "预科系学生成功率：",
+                "rate_80": "80%",
+                "approach_desc": "个性化方法、现代教学法、经验丰富的教师",
+                
+                // Common terms
+                "duration": "时长：",
+                "duration_10": "10个月（9月-6月）",
+                "intensity": "强度：",
+                "hours_30": "每周30小时",
+                "groups": "8-12人小组",
+                "flexible": "灵活课表",
+                "certificate": "完成证书",
+                
+                // Sports page
+                "sport_title": "太平洋国立大学体育部门",
+                "sport_subtitle": "25个以上的部门，用于保持健康和积极生活方式",
+                
+                // Sports list
+                "sport_basketball_m": "篮球（男子）",
+                "sport_basketball_f": "篮球（女子）",
+                "sport_volleyball": "排球",
+                "sport_futsal": "室内足球",
+                "sport_skiing": "滑雪",
+                "sport_orienteering": "定向运动",
+                "sport_badminton": "羽毛球",
+                "sport_tabletennis": "乒乓球",
+                "sport_sambo": "桑搏/柔道",
+                "sport_cheerleading": "啦啦队",
+                "sport_hockey": "冰球",
+                "sport_chess": "国际象棋",
+                
+                // Coaches - Chinese version: Russian name + Chinese transcription in parentheses
+                "coach_ryzhankov": "Рыжанков Алексей Витальевич (雷然科夫·阿列克谢·维塔利耶维奇)",
+                "coach_chaikovsky": "Чайковский Владимир Игоревич (柴可夫斯基·弗拉基米尔·伊戈列维奇)",
+                "coach_aponina": "Апонина Алла Константиновна (阿波尼娜·阿拉·康斯坦丁诺夫娜)",
+                "coach_neimakin": "Неймакин Александр Игоревич (涅马金·亚历山大·伊戈列维奇)",
+                "coach_tarasov": "Тарасов Антон Николаевич (塔拉索夫·安东·尼古拉耶维奇)",
+                "coach_potapov": "Потапов Сергей Юрьевич (波塔波夫·谢尔盖·尤里耶维奇)",
+                "coach_vorobiev": "Воробьев Павел Викторович (沃罗比耶夫·帕维尔·维克托罗维奇)",
+                "coach_gorokhov": "Горохов Константин Эдуардович (戈罗霍夫·康斯坦丁·爱德华多维奇)",
+                "coach_ikonnikov": "Иконников Евгений Михайлович (伊科尼科夫·叶夫根尼·米哈伊洛维奇)",
+                "coach_chikvatadze": "Чиквадзе Александра Анатольевна (奇克瓦泽·亚历山德拉·阿纳托利耶夫娜)",
+                "coach_egorychev": "Егорычев Игорь Евгеньевич (叶戈雷切夫·伊戈尔·叶夫根耶维奇)",
+                "coach_dzhafarova": "Джафарова Динара Ильхамовна (贾法罗娃·迪纳拉·伊尔哈莫夫娜)",
+                
+                // Phone numbers
+                "phone_0878123": "8-999-087-81-23",
+                "phone_4084765": "8-929-408-47-65",
+                "phone_2101168": "8-924-210-11-68",
+                "phone_0841077": "8-999-084-10-77",
+                "phone_5439049": "8-914-543-90-49",
+                "phone_2198020": "8-924-219-80-20",
+                "phone_2106705": "8-914-210-67-05",
+                "phone_1105062": "8-924-110-50-62",
+                "phone_4126626": "8-914-412-66-26",
+                "phone_5480759": "8-914-548-07-59",
+                "phone_2164115": "8-914-216-41-15",
+                "phone_0838304": "8-999-083-83-04",
+                
+                // Facilities
+                "facilities_title": "体育设施",
+                "pool": "太平洋国立大学游泳池：",
+                "pool_desc": "现代化的25米游泳池，配备专业设备",
+                "gym_halls": "体育馆：",
+                "gym_halls_desc": "6个专业体育馆，适用于各种体育项目",
+                "outdoor": "户外设施：",
+                "outdoor_desc": "足球场、网球场、健身区",
+                "ski_base": "滑雪基地：",
+                "ski_base_desc": "冬季运动的现代化设备",
+                
+                // Achievements
+                "achievements_title": "运动员成就",
+                "achievement_1": "2名国际级运动健将",
+                "achievement_2": "11名俄罗斯运动健将",
+                "achievement_3": "45名候补运动健将",
+                "achievement_4": "75名大众级别运动员",
+                "achievement_5": "参加俄罗斯和远东锦标赛",
+                "club_name": "体育俱乐部'Politechnik'：",
+                "club_desc": "成立于2007年。每年举办100多场比赛，参与人数超过3500人。",
+                
+                // Life page
+                "life_title": "哈巴罗夫斯克生活",
+                "life_subtitle": "关于城市、宿舍和休闲的一切信息",
+                
+                // Campus
+                "campus_title": "学生校园",
+                "campus_desc": "11栋现代化宿舍，4472个床位。每个宿舍都有：",
+                "wifi": "高速Wi-Fi：",
+                "wifi_desc": "整个区域可连接高速互联网",
+                "sport_rooms": "运动室：",
+                "sport_rooms_desc": "每个宿舍都有健身器材和运动装备",
+                "kitchens": "厨房：",
+                "kitchens_desc": "每层配备厨房设施",
+                "laundry": "洗衣房：",
+                "laundry_desc": "洗衣机和烘干机",
+                "study_rooms": "自习室：",
+                "study_rooms_desc": "独立学习空间",
+                
+                // Student office
+                "student_office_title": "学生办公室",
+                "main_building": "主楼：",
+                "second_building": "第二楼：",
+                "address": "地址：",
+                "address_main_building": "太平洋街136号，245л房间",
+                "address_second_building": "太平洋街134号，219房间",
+                "hours": "工作时间：",
+                "hours_student_office": "9:00-12:30, 13:30-16:00",
+                "phone": "电话：",
+                "phone_student_office_main": "8 (4212) 97-97-90",
+                "phone_student_office_second": "8 (4212) 97-98-27 分机 3921",
+                "head": "负责人：",
+                "head_name": "诺维科娃·安娜·米哈伊洛夫娜 (243л房间，主楼)",
+                "email": "电子邮件：",
+                "study_certificate": "可通过太平洋国立大学门户网站个人账户申请学习证明",
+                
+                // Alumni
+                "alumni_title": "国际校友协会",
+                "alumni_desc": "成立于2016年5月24日。联合了来自不同国家的2000多名毕业生。",
+                "tasks": "协会任务：",
+                "task_1": "团结国际学生和校友",
+                "task_2": "协助就业和职业发展",
+                "task_3": "加强校友与大学之间的联系",
+                "task_4": "在国际上推广太平洋国立大学品牌",
+                "task_5": "组织文化和专业活动",
+                
+                // City info
+                "city_title": "关于哈巴罗夫斯克市",
+                "city_desc1": "哈巴罗夫斯克——远东联邦区的首府，位于阿穆尔河和乌苏里江交汇处的现代化大都市。这座城市将丰富的历史遗产与动态发展相结合，为学习和生活提供了理想环境。",
+                "city_desc2": "哈巴罗夫斯克被称为'桥梁之城'——这里有俄罗斯最长的跨阿穆尔河桥梁之一。城市拥有发达的基础设施，许多公园、堤岸、现代化购物中心和文化机构。",
+                "city_desc3": "由于靠近中国、日本和韩国边界，哈巴罗夫斯克是亚太地区重要的国际交通枢纽和跨文化交流中心。",
+                
+                // City statistics
+                "stat_residents": "居民",
+                "stat_universities": "大学",
+                "stat_parks": "公园和广场",
+                "stat_museums": "博物馆和剧院",
+                
+                // Support page
+                "support_title": "学生支持",
+                "support_subtitle": "我们随时准备帮助解决任何问题",
+                
+                // Emergency
+                "emergency_title": "紧急帮助",
+                "emergency_number": "紧急号码：",
+                "emergency_112": "112 - 俄罗斯紧急服务",
+                "ambulance": "救护车：",
+                "ambulance_103": "103 - 医疗帮助",
+                "police": "警察：",
+                "police_102": "102 - 俄罗斯警察",
+                "fire": "消防服务：",
+                "fire_101": "101",
+                "gas": "燃气服务：",
+                "gas_104": "104",
+                
+                // Psychological
+                "psychological_title": "心理支持",
+                "psychological_desc": "为所有学生提供免费心理咨询：",
+                "schedule": "工作时间：",
+                "schedule_hours": "周一至周五，9:00-18:00",
+                "location": "地点：",
+                "location_room": "312房间，主楼",
+                "phone": "电话：",
+                "phone_psychologist": "+7 (4212) 12-34-57",
+                "appointment": "预约：",
+                "appointment_method": "通过辅导员或电话",
+                "confidential": "保密、专业、任何语言均可（提供翻译）。",
+                
+                // Curator
+                "curator_title": "辅导员支持",
+                "curator_desc": "为每组国际学生分配辅导员，帮助：",
+                "help_1": "适应俄罗斯生活",
+                "help_2": "解决日常问题",
+                "help_3": "处理文件",
+                "help_4": "查找必要信息",
+                "help_5": "组织文化活动",
+                
+                // Language support
+                "language_support_title": "语言支持",
+                "language_support_desc": "太平洋国立大学为国际学生提供全面的语言支持，包括：",
+                "academic_writing": "学术写作：",
+                "academic_writing_desc": "帮助用俄语撰写学术论文、文章和报告",
+                "translation": "专业翻译：",
+                "translation_desc": "官方文件和学习材料的翻译服务",
+                "clubs": "对话俱乐部：",
+                "clubs_desc": "每周与母语人士会面进行练习",
+                "testing": "语言测试：",
+                "testing_desc": "准备ТРКИ和其他语言测试",
+                "digital": "数字资源：",
+                "digital_desc": "访问在线平台、互动课程和移动应用程序",
+                "language_goal": "我们的目标是确保完全的语言沉浸，帮助学生达到在俄罗斯成功学习和生活所需的水平。",
+                
+                // Contacts page
+                "contacts_title": "太平洋国立大学联系方式",
+                "contacts_subtitle": "以任何方便的方式联系我们",
+                
+                // Addresses
+                "addresses_title": "主要地址",
+                "main_campus": "主校区：",
+                "address_campus": "哈巴罗夫斯克，太平洋街136号",
+                "international_dept": "国际部门：",
+                "address_international_dept_full": "243ц房间，主校区",
+                
+                // Working hours
+                "hours_title": "工作时间",
+                "rector_office": "校长办公室：",
+                "hours_rector": "周一至周五：9:00-18:00",
+                "int_dept_hours": "国际部门：",
+                "hours_international": "周一至周五：9:00-17:00",
+                "student_office_hours": "学生办公室：",
+                "hours_student": "周一至周五：9:00-12:30, 13:30-16:00",
+                "lunch": "午餐：",
+                "lunch_time": "13:00-14:00",
+                
+                // Social
+                "social_title": "社交媒体",
+                "social_desc": "关注我们的社交媒体，了解最新新闻、活动和重要公告。",
+                
+                // Search
+                "search_title": "网站搜索",
+                "search_placeholder": "输入查询...",
+                "email_placeholder": "您的邮箱",
+                
+                // Footer
+                "footer_about": "关于太平洋国立大学",
+                "footer_about_link": "关于大学",
+                "footer_programs": "教育项目",
+                "footer_sports": "体育生活",
+                "footer_campus": "学生校园",
+                "footer_support": "支持",
+                "footer_admission": "入学",
+                "footer_psychological": "心理帮助",
+                "footer_office": "学生办公室",
+                "footer_contacts": "联系方式",
+                "footer_contact": "联系方式",
+                "footer_address": "哈巴罗夫斯克，太平洋街136号",
+                "footer_newsletter": "新闻订阅",
+                "footer_newsletter_desc": "接收关于入学、活动和太平洋国立大学新闻的最新信息",
+                
+                // Copyright
+                "copyright": "© 2025 太平洋国立大学。外国学生门户网站。",
+                "demo_note": "这是网站的演示版本。有关最新信息，请联系太平洋国立大学国际部门。"
+            }
+        };
+
+        // ===== MAIN FUNCTIONS =====
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loader
+            setTimeout(() => {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 1000);
+
+            // Initialize mobile menu
+            initMobileMenu();
+
+            // Initialize scroll
+            initScroll();
+
+            // Initialize theme
+            initTheme();
+
+            // Initialize accordions
+            initAccordions();
+
+            // Initialize language switcher
+            initLanguageSwitcher();
+
+            // Show home page
+            switchPage('home');
+
+            // Animate statistics
+            setTimeout(animateStats, 500);
+        });
+
+        // Initialize mobile menu
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+
+            menuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                menuBtn.innerHTML = navMenu.classList.contains('active') ?
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            overlay.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+
+            // Close menu when clicking on link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
+
+        // Initialize scroll
+        function initScroll() {
+            const header = document.getElementById('mainHeader');
+            const scrollTopBtn = document.getElementById('scrollTop');
+            const readingProgress = document.getElementById('readingProgress');
+
+            window.addEventListener('scroll', () => {
+                // Header effect on scroll
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // "To top" button
+                if (window.scrollY > 500) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+
+                // Reading progress bar
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                readingProgress.style.width = scrolled + '%';
+            });
+
+            // Click on "To top" button
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Initialize theme
+        function initTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('togu-theme');
+
+            // Check saved theme
+            if (savedTheme === 'dark') {
+                enableDarkMode();
+            }
+
+            // Check system preferences
+            if (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                enableDarkMode();
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (isDarkMode) {
+                    disableDarkMode();
+                } else {
+                    enableDarkMode();
+                }
+            });
+        }
+
+        // Enable dark mode
+        function enableDarkMode() {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById('themeToggle').innerHTML = '<i class="fas fa-sun"></i>';
+            document.getElementById('themeToggle').title = 'Switch to light theme';
+            isDarkMode = true;
+            localStorage.setItem('togu-theme', 'dark');
+        }
+
+        // Disable dark mode
+        function disableDarkMode() {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('themeToggle').innerHTML = '<i class="fas fa-moon"></i>';
+            document.getElementById('themeToggle').title = 'Switch to dark theme';
+            isDarkMode = false;
+            localStorage.setItem('togu-theme', 'light');
+        }
+
+        // Initialize accordions
+        function initAccordions() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordions
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open current if was closed
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Initialize language switcher
+        function initLanguageSwitcher() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+        }
+
+        // Switch pages with animation
+        function switchPage(pageId) {
+            // Current page
+            const currentPageEl = document.getElementById(currentPage);
+            const targetPage = document.getElementById(pageId + '-page');
+            
+            if (!targetPage || pageId + '-page' === currentPage) return;
+
+            // Transition animation
+            if (currentPageEl) {
+                currentPageEl.style.opacity = '0';
+                currentPageEl.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    currentPageEl.classList.add('hidden');
+                    targetPage.classList.remove('hidden');
+                    
+                    // Reset animation for new page
+                    targetPage.style.opacity = '0';
+                    targetPage.style.transform = 'translateY(20px)';
+                    
+                    // Start appearance animation
+                    setTimeout(() => {
+                        targetPage.style.opacity = '1';
+                        targetPage.style.transform = 'translateY(0)';
+                        targetPage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        
+                        // Animate elements inside
+                        animatePageElements(targetPage);
+                    }, 50);
+                }, 300);
+            } else {
+                // First load
+                targetPage.classList.remove('hidden');
+                animatePageElements(targetPage);
+            }
+
+            currentPage = pageId + '-page';
+
+            // Update active link in navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`.nav-link[onclick*="switchPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Close mobile menu
+            document.getElementById('navMenu').classList.remove('active');
+            document.getElementById('mobileMenuOverlay').classList.remove('active');
+            document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars"></i>';
+        }
+
+        // Animate page elements
+        function animatePageElements(page) {
+            const cards = page.querySelectorAll('.card');
+            const stats = page.querySelectorAll('.stat-item');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'slideUp 0.6s ease-out forwards';
+            });
+            
+            stats.forEach((stat, index) => {
+                stat.style.animationDelay = `${index * 0.1}s`;
+                stat.style.animation = 'slideUp 0.6s ease-out forwards';
+            });
+        }
+
+        // Change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update texts
+            updateTexts(lang);
+        }
+
+        // Update texts
+        function updateTexts(lang) {
+            const trans = translations[lang];
+            
+            // Find all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (trans[key]) {
+                    // For elements with icons (navigation, buttons)
+                    if (element.children.length > 0 && element.children[0].tagName === 'I') {
+                        const icon = element.children[0].cloneNode(true);
+                        element.innerHTML = '';
+                        element.appendChild(icon);
+                        
+                        // For buttons with span
+                        if (element.querySelector('span')) {
+                            const span = element.querySelector('span');
+                            span.textContent = ' ' + trans[key];
+                            element.appendChild(span);
+                        } else {
+                            element.appendChild(document.createTextNode(' ' + trans[key]));
+                        }
+                    } 
+                    // For input placeholder
+                    else if (element.tagName === 'INPUT') {
+                        element.placeholder = trans[key];
+                    }
+                    // For buttons without icons
+                    else if (element.tagName === 'BUTTON') {
+                        const icon = element.querySelector('i');
+                        if (icon) {
+                            const iconClone = icon.cloneNode(true);
+                            element.innerHTML = '';
+                            element.appendChild(iconClone);
+                            element.appendChild(document.createTextNode(' ' + trans[key]));
+                        } else {
+                            element.textContent = trans[key];
+                        }
+                    }
+                    // For regular text elements
+                    else {
+                        element.textContent = trans[key];
+                    }
+                }
+            });
+
+            // Page title
+            document.title = 'TOGU International - ' + trans['nav_home'];
+        }
+
+        // Animate statistics
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const text = stat.textContent;
+                const num = parseInt(text.replace(/[^0-9]/g, ''));
+                const suffix = text.replace(/[0-9]/g, '');
+                
+                if (!isNaN(num)) {
+                    let current = 0;
+                    const increment = num / 30;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= num) {
+                            current = num;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(current) + suffix;
+                    }, 50);
+                }
+            });
+        }
+
+        // Site search
+        document.getElementById('siteSearch')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.toLowerCase();
+                if (query.trim() === '') return;
+                
+                // Simple keyword search
+                const pages = {
+                    'admission': 'admission',
+                    'apply': 'admission',
+                    'documents': 'admission',
+                    'visa': 'admission',
+                    'education': 'education',
+                    'programs': 'education',
+                    'russian language': 'education',
+                    'sports': 'sport',
+                    'sections': 'sport',
+                    'training': 'sport',
+                    'dormitory': 'life',
+                    'campus': 'life',
+                    'khabarovsk': 'life',
+                    'support': 'support',
+                    'help': 'support',
+                    'psychologist': 'support',
+                    'contacts': 'contacts',
+                    'phone': 'contacts',
+                    'address': 'contacts'
+                };
+                
+                for (const [keyword, page] of Object.entries(pages)) {
+                    if (query.includes(keyword)) {
+                        switchPage(page);
+                        this.value = '';
+                        return;
+                    }
+                }
+                
+                // Show notification
+                showNotification('Nothing found for your query. Try other keywords.', 'warning');
+            }
+        });
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Automatically hide after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.parentElement.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
